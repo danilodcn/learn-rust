@@ -1,7 +1,7 @@
 use clap::Parser;
 
 
-mod questions;
+pub mod exercises;
 pub mod shared;
 
 /// Programa para aprendizado da linguagem rust
@@ -15,6 +15,6 @@ fn main() {
     let args = Args::parse();
     println!("{:?}", args);
 
-    let x = shared::shared::input::<i32>();
+    let x = shared::shared::input();
     println!("{:?}", x);
 }

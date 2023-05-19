@@ -1,13 +1,10 @@
 pub mod shared {
     use std::{self, str, io, fmt, cmp};
-    pub fn input<T>() -> Vec<Vec<T>>
-    where T: str::FromStr + fmt::Debug + cmp::PartialEq, <T as str::FromStr>::Err : fmt::Debug
+    pub fn input() -> String
     {
         let mut line = String::new();
         io::stdin().read_line(&mut line).unwrap();
-        println!("line {}", line);
-        return self::parse(&line);
-        // value = line.parse::<T>().map(|x| x);
+        return line
     }
 
     pub fn parse<T>(string: &String) -> Vec<Vec<T>>
@@ -31,8 +28,6 @@ pub mod shared {
             else { true }
         }).collect();
 
-
-        println!("ola {:?}", strings);
         return strings
     }
 }
