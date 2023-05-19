@@ -2,20 +2,21 @@
 pub mod question_1035 {
     use crate::shared::shared::{parse, input};
     pub fn resolve(input: String) -> &'static str {
-        let numbers = parse::<i32>(&input);
-        let a = numbers[0][0];
-        let b = numbers[0][1];
-        let c = numbers[0][2];
-        let d = numbers[0][3];
         let message;
-        if b > c && d > a && (c + d) > (a + b) && (c >= 0 && d >= 0) && a % 2 == 0 {
-            message = "Valores aceitos";
+        let numbers = parse::<i32>(&input);
+        
+        if let [a, b, c, d] = numbers[0][..] {
+            if b > c && d > a && (c + d) > (a + b) && (c >= 0 && d >= 0) && a % 2 == 0 {
+                message = "Valores aceitos";
+            }
+            else {
+                message = "Valores nao aceitos";
+            }
+            return message
         }
         else {
-            message = "Valores nao aceitos";
+            panic!("Erro no parser dos dados!")
         }
-
-        return message
     }
 
     pub fn handle() {
