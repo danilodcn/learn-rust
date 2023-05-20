@@ -19,6 +19,7 @@ pub fn resolve(input: String) -> &'static str {
 }
 
 pub fn handle() {
+    println!("Valores: ");
     let inp = input();
     let message = resolve(inp);
 

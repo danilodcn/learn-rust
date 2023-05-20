@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use clap::Parser;
 
 
@@ -8,13 +10,30 @@ pub mod shared;
 #[derive(clap::Parser, Debug)]
 struct Args {
     /// numero da questão resolvida
-    question: usize
+    question: String
 }
 
 fn main() {
     let args = Args::parse();
-    println!("{:?}", args);
 
-    let x = shared::shared::input();
-    println!("{:?}", x);
+    let questions = get_questions();
+
+    match questions.get(&args.question) {
+        Some(f) => f(),
+        None => {
+            eprintln!("Exercício não resolvido! Os exercícios resolvidos são: {:?}", questions.keys().map(|x| &**x).collect::<Vec<_>>().join(", "))
+        }
+    }
+}
+
+use exercises::level_2::{question_1009, question_1035};
+
+
+fn get_questions() -> HashMap<String, fn()> {
+    let mut functions: HashMap<String, fn()> = HashMap::new();
+
+    functions.insert(String::from("1009"), question_1009::handle);
+    functions.insert(String::from("1035"), question_1035::handle);
+
+    return functions
 }
