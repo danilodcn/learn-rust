@@ -1,35 +1,33 @@
 
-pub mod question_1035 {
-    use crate::shared::shared::{parse, input};
-    pub fn resolve(input: String) -> &'static str {
-        let message;
-        let numbers = parse::<i32>(&input);
-        
-        if let [a, b, c, d] = numbers[0][..] {
-            if b > c && d > a && (c + d) > (a + b) && (c >= 0 && d >= 0) && a % 2 == 0 {
-                message = "Valores aceitos";
-            }
-            else {
-                message = "Valores nao aceitos";
-            }
-            return message
+use crate::shared::shared::{parse, input};
+pub fn resolve(input: String) -> &'static str {
+    let message;
+    let numbers = parse::<i32>(&input);
+    
+    if let [a, b, c, d] = numbers[0][..] {
+        if b > c && d > a && (c + d) > (a + b) && (c >= 0 && d >= 0) && a % 2 == 0 {
+            message = "Valores aceitos";
         }
         else {
-            panic!("Erro no parser dos dados!")
+            message = "Valores nao aceitos";
         }
+        return message
     }
-
-    pub fn handle() {
-        let inp = input();
-        let message = resolve(inp);
-
-        println!("{}", message);
+    else {
+        panic!("Erro no parser dos dados!")
     }
+}
+
+pub fn handle() {
+    let inp = input();
+    let message = resolve(inp);
+
+    println!("{}", message);
 }
 
 #[cfg(test)]
 mod test {
-    use super::question_1035::resolve;
+    use super::resolve;
     #[test]
     fn test_01() {
         let expected = "Valores nao aceitos";
